@@ -1,6 +1,6 @@
 #### Objective provided by Codecademy
 
-### IMPROVED STYLING WITH CSS
+### BUILDING INTERACTIVE WEBSITES
 
 # Challenge Project: Find Your Hat
 
