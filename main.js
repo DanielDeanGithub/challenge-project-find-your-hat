@@ -14,3 +14,10 @@ class Field {
         this.field.forEach(row => console.log(row.join('')));
     }
 };
+
+
+const myField = new Field([
+    ['*', '░', 'O'],
+    ['░', 'O', '░'],
+    ['░', '^', '░'],
+]);
