@@ -11,6 +11,6 @@ class Field {
     }
 
     print() {
-        
+        this.field.forEach(row => console.log(row.join('')));
     }
 };
