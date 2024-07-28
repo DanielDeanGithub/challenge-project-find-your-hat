@@ -21,3 +21,5 @@ const myField = new Field([
     ['░', 'O', '░'],
     ['░', '^', '░'],
 ]);
+
+myField.print();
