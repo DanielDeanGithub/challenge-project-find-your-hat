@@ -15,7 +15,10 @@ class Field {
     }
 
     playGame() {
-        console.log('Time to find your hat!\n');
+        console.log('Time to find your hat!');
+        console.log(`To begin please enter a direction (type 'N' for north, 'S' for South, 'E' for East or 'W' for West)\n`);
+        
+        
     }
 };
 
