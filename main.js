@@ -22,4 +22,6 @@ const myField = new Field([
     ['░', '^', '░'],
 ]);
 
+console.log('Time to find your hat!\n');
+
 myField.print();
