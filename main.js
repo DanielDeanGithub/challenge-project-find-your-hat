@@ -7,7 +7,11 @@ const pathCharacter = '*';
 
 class Field {
     constructor(field) {
-        this.field = field;
+        this._field = field;
+    }
+
+    get field() {
+        return this._field;
     }
 
     print() {
