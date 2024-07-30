@@ -13,6 +13,13 @@ class Field {
     print() {
         this.field.forEach(row => console.log(row.join('')));
     }
+};
+
+
+class Game {
+    constructor(field) {
+        this.field = field;
+    }
 
     playGame() {
         console.log('Time to find your hat!');
@@ -20,7 +27,9 @@ class Field {
         
         
     }
+
 };
+
 
 
 const myField = new Field([
@@ -29,6 +38,9 @@ const myField = new Field([
     ['░', '^', '░'],
 ]);
 
+const hatGame = new Game(myField);
 
 
-myField.print();
+hatGame.playGame();
+
+hatGame.field.print();
