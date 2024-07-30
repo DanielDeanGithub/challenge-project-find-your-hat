@@ -13,6 +13,9 @@ class Field {
     get field() {
         return this._field;
     }
+    set field(newField) {
+        this._field = newField;
+    }
 
     print() {
         this.field.forEach(row => console.log(row.join('')));
