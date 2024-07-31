@@ -33,6 +33,9 @@ class Game {
         return this._gameRun;
     }
 
+    set gameRun(gameRun) {
+        this._gameRun = gameRun;
+    }
 
 
     playGame() {
