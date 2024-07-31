@@ -27,6 +27,7 @@ class Game {
     constructor(field) {
         this.field = field;
         this._gameRun = false;
+        this._player = [0,0];
     }
     
     get gameRun() {
@@ -47,6 +48,9 @@ class Game {
         //console.log(this.gameRun);
         this.gameRun = true;
         //console.log(this.gameRun);
+
+        //console.log(this.field.field[0][0])
+
     }
 
 
@@ -66,4 +70,4 @@ const hatGame = new Game(myField);
 
 hatGame.playGame();
 
-hatGame.field.print();
+//hatGame.field.print();
