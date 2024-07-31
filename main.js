@@ -26,10 +26,12 @@ class Field {
 class Game {
     constructor(field) {
         this.field = field;
-        this.gameRun = false;
+        this._gameRun = false;
     }
     
-    
+    get gameRun() {
+        return this._gameRun;
+    }
 
 
 
