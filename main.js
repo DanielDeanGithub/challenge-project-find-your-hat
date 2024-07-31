@@ -43,6 +43,10 @@ class Game {
         console.log('Time to find your hat!');
         console.log(`To begin please enter a direction (type 'N' for north, 'S' for South, 'E' for East or 'W' for West)\n`); 
 
+
+        'console.log(this.gameRun);
+        this.gameRun = true;
+        'console.log(this.gameRun);
     }
 
 
