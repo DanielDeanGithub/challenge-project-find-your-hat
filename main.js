@@ -26,14 +26,21 @@ class Field {
 class Game {
     constructor(field) {
         this.field = field;
+        this.gameRun = false;
     }
+    
+    
+
+
 
     playGame() {
+
         console.log('Time to find your hat!');
-        console.log(`To begin please enter a direction (type 'N' for north, 'S' for South, 'E' for East or 'W' for West)\n`);
-        
-        
+        console.log(`To begin please enter a direction (type 'N' for north, 'S' for South, 'E' for East or 'W' for West)\n`); 
+
     }
+
+
 
 };
 
