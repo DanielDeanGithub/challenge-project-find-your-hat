@@ -27,7 +27,7 @@ class Game {
     constructor(field) {
         this.map = field;
         this._gameRun = false;
-        this._player = [0,0];
+        this._player = [[0][0]];
     }
     
     get gameRun() {
@@ -59,7 +59,7 @@ class Game {
         //console.log(this.gameRun);
 
         //this.map.print()
-        //console.log(mapArr);
+        //console.log(mapArr.length);
 
         while(this.gameRun) {
             let userInput = prompt('Please enter a direction to explore:').toUpperCase();
@@ -74,17 +74,35 @@ class Game {
 
             
             switch (userInput) {
-                case value: 'N'
-         
+                case 'N':
+                    console.log(this.player);
+                    this.player[0] > 0 ? this.player[0]-- : console.log('error'); 
+                    console.log(this.player);       
                     break;
             
+                case 'S':
+                    console.log(this.player);
+                    this.player[0] < mapArr.length - 1 ? this.player[0]++ : console.log('error'); 
+                    console.log(this.player);       
+                    break;
+                case 'E':
+                    console.log(this.player);
+                    this.player[1] < 0 ? this.player[1]++ : console.log('error'); 
+                    console.log(this.player);       
+                    break;
+            
+                case 'W':
+                    console.log(this.player);
+                    this.player[1] > 0 ? this.player[1]-- : console.log('error'); 
+                    console.log(this.player);       
+                    break;
                 default:
                     break;
             }
 
 
 
-            this.map.field.print();
+            this.map.print();
 
             this.gameRun = false;
         }
