@@ -42,6 +42,9 @@ class Game {
         return this._player;
     }
 
+    set player(player) {
+        this._player = player;
+    }
 
 
     playGame() {
