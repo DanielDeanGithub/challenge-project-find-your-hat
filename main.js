@@ -54,9 +54,12 @@ class Game {
         //console.log(mapArr);
 
         while(this.gameRun) {
-            console.log('gameplay loop');
+            let userInput = prompt('Please enter a direction to explore:').toUpperCase();
 
-            const userInput = prompt('Please enter a direction to explore:').toUpperCase();
+            while (userInput !== 'N' && userInput !== 'S' && userInput !== 'E' && userInput !== 'W') {
+                console.log(`Error. Please enter a valid direction ('N','S','E', or 'W')`);
+                userInput = prompt('Please enter a direction to explore:').toUpperCase();
+            }
 
 
             console.log(userInput);
