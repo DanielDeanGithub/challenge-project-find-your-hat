@@ -55,6 +55,12 @@ class Game {
 
         while(this.gameRun) {
             console.log('gameplay loop');
+
+            const userInput = prompt('Please enter a direction to explore:').toUpperCase();
+
+
+            console.log(userInput);
+
             this.gameRun = false;
         }
     }
