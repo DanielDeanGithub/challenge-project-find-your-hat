@@ -38,6 +38,11 @@ class Game {
         this._gameRun = gameRun;
     }
 
+    get player() {
+        return this._player;
+    }
+
+
 
     playGame() {
 
