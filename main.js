@@ -50,9 +50,13 @@ class Game {
         this.gameRun = true;
         //console.log(this.gameRun);
 
-        this.map.print()
-        console.log(mapArr);
+        //this.map.print()
+        //console.log(mapArr);
 
+        while(this.gameRun) {
+            console.log('gameplay loop');
+            this.gameRun = false;
+        }
     }
 
 
