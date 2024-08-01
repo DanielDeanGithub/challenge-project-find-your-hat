@@ -64,6 +64,20 @@ class Game {
 
             console.log(userInput);
 
+            
+            switch (userInput) {
+                case value: 'N'
+         
+                    break;
+            
+                default:
+                    break;
+            }
+
+
+
+            this.map.field.print();
+
             this.gameRun = false;
         }
     }
