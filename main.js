@@ -25,7 +25,7 @@ class Field {
 
 class Game {
     constructor(field) {
-        this.field = field;
+        this.map = field;
         this._gameRun = false;
         this._player = [0,0];
     }
@@ -44,12 +44,14 @@ class Game {
         console.log('Time to find your hat!');
         console.log(`To begin please enter a direction (type 'N' for north, 'S' for South, 'E' for East or 'W' for West)\n`); 
 
+        const mapArr = this.map.field;
 
         //console.log(this.gameRun);
         this.gameRun = true;
         //console.log(this.gameRun);
 
-        //console.log(this.field.field[0][0])
+        this.map.print()
+        console.log(mapArr);
 
     }
 
