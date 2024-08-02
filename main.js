@@ -99,10 +99,19 @@ class Game {
             }
 
 
+            
+
 
             console.log(`x: ${x} - y: ${y}`);
             console.log(mapArr.length);
-            
+            //console.log(mapArr[y].length);
+
+            // error checking to make sure movement is within bounds
+            if (y > 0 && y < mapArr.length || x > 0 && x < mapArr[y].length) {
+                console.log(`valid`);
+            } else {
+                console.log(`invalid`);
+            }
 
             this.map.print();
 
