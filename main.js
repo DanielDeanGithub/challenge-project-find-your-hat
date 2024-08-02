@@ -27,7 +27,7 @@ class Game {
     constructor(field) {
         this.map = field;
         this._gameRun = false;
-        this._player = [[0][0]];
+        this._player = [0,0];
     }
     
     get gameRun() {
@@ -72,35 +72,37 @@ class Game {
 
             console.log(userInput);
 
+            let x = this.player[0];
+
+            let y = this.player[1];
+
+            console.log(`x: ${x} - y: ${y}`);
+
             
             switch (userInput) {
                 case 'N':
-                    console.log(this.player);
-                    this.player[0] > 0 ? this.player[0]-- : console.log('error'); 
-                    console.log(this.player);       
+                    y--;   
                     break;
             
                 case 'S':
-                    console.log(this.player);
-                    this.player[0] < mapArr.length - 1 ? this.player[0]++ : console.log('error'); 
-                    console.log(this.player);       
+                    y++
                     break;
                 case 'E':
-                    console.log(this.player);
-                    this.player[1] < 0 ? this.player[1]++ : console.log('error'); 
-                    console.log(this.player);       
+                    x++;
                     break;
             
                 case 'W':
-                    console.log(this.player);
-                    this.player[1] > 0 ? this.player[1]-- : console.log('error'); 
-                    console.log(this.player);       
+                    x--;
                     break;
                 default:
                     break;
             }
 
 
+
+            console.log(`x: ${x} - y: ${y}`);
+            console.log(mapArr.length);
+            
 
             this.map.print();
 
