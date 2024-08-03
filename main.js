@@ -98,24 +98,32 @@ class Game {
                     break;
             }
 
-
-            
-
-
             console.log(`x: ${x} - y: ${y}`);
             console.log(mapArr.length);
             //console.log(mapArr[y].length);
 
             // error checking to make sure movement is within bounds
             if (y > 0 && y < mapArr.length || x > 0 && x < mapArr[y].length) {
-                console.log(`valid`);
+                console.log(this.player);
+
+                if (mapArr[y][x] === hole) {
+                    console.log('You fell down a hole. Game over =[');
+                    return this.gameRun = false;
+                }
+                
+                if (mapArr[y][x] === hat) {
+                    console.log('You found your hat, Congratulations!!!');
+                    return this.gameRun = false;
+                }
+
+                console.log('The search continues...')
+                this.player = [x,y];
+                console.log(this.player);
+
             } else {
-                console.log(`invalid`);
+                console.log('Ouch! You just walked into a walk.');
             }
-
-            this.map.print();
-
-            this.gameRun = false;
+            //this.map.print();            
         }
     }
 
