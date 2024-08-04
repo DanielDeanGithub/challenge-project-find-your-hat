@@ -50,7 +50,7 @@ class Game {
     playGame() {
 
         console.log('Time to find your hat!');
-        console.log(`To begin please enter a direction (type 'N' for north, 'S' for South, 'E' for East or 'W' for West)\n`); 
+        console.log(`To begin please enter a direction (type 'W' for up, 'A' for left, 'S' for down or 'D' for right)\n`); 
 
         const mapArr = this.map.field;
 
@@ -64,47 +64,45 @@ class Game {
         while(this.gameRun) {
             let userInput = prompt('Please enter a direction to explore:').toUpperCase();
 
-            while (userInput !== 'N' && userInput !== 'S' && userInput !== 'E' && userInput !== 'W') {
-                console.log(`Error. Please enter a valid direction ('N','S','E', or 'W')`);
+            while (userInput !== 'W' && userInput !== 'A' && userInput !== 'S' && userInput !== 'D') {
+                console.log(`Error. Please enter a valid direction ('W','A','S', or 'D')`);
                 userInput = prompt('Please enter a direction to explore:').toUpperCase();
             }
 
 
-            console.log(userInput);
+            //console.log(userInput);
 
             let x = this.player[0];
 
             let y = this.player[1];
 
-            console.log(`x: ${x} - y: ${y}`);
+            //console.log(`x: ${x} - y: ${y}`);
 
             
             switch (userInput) {
-                case 'N':
+                case 'W':
                     y--;   
                     break;
-            
+                case 'A':
+                    x--;
+                    break;
                 case 'S':
                     y++
                     break;
-                case 'E':
+                case 'D':
                     x++;
-                    break;
-            
-                case 'W':
-                    x--;
                     break;
                 default:
                     break;
             }
 
-            console.log(`x: ${x} - y: ${y}`);
-            console.log(mapArr.length);
+            //console.log(`x: ${x} - y: ${y}`);
+            //console.log(mapArr.length);
             //console.log(mapArr[y].length);
 
             // error checking to make sure movement is within bounds
             if (y > 0 && y < mapArr.length || x > 0 && x < mapArr[y].length) {
-                console.log(this.player);
+                //console.log(this.player);
 
                 if (mapArr[y][x] === hole) {
                     console.log('You fell down a hole. Game over =[');
@@ -118,7 +116,7 @@ class Game {
 
                 console.log('The search continues...')
                 this.player = [x,y];
-                console.log(this.player);
+                //console.log(this.player);
 
             } else {
                 console.log('Ouch! You just walked into a walk.');
