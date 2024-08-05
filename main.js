@@ -26,6 +26,7 @@ class Field {
 class Game {
     constructor(field) {
         this.map = field;
+        this._preview = [];
         this._gameRun = false;
         this._player = [0,0];
     }
@@ -45,7 +46,6 @@ class Game {
     set player(player) {
         this._player = player;
     }
-
 
     playGame() {
 
