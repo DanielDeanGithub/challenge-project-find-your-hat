@@ -47,6 +47,10 @@ class Game {
         this._player = player;
     }
 
+    get preview() {
+        return this._preview;
+    }
+
     playGame() {
 
         console.log('Time to find your hat!');
