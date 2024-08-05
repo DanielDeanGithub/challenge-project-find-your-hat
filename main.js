@@ -51,6 +51,10 @@ class Game {
         return this._preview;
     }
 
+    set preview(preview) {
+        this._preview = preview;
+    }
+
     playGame() {
 
         console.log('Time to find your hat!');
