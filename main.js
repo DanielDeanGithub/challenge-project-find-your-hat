@@ -26,7 +26,7 @@ class Field {
 class Game {
     constructor(field) {
         this.map = field;
-        this._preview = [];
+        this._preview = field;
         this._gameRun = false;
         this._player = [0,0];
     }
@@ -55,7 +55,21 @@ class Game {
         this._preview = preview;
     }
 
+    resetPreview() {
+        return this.preview.field.forEach((row, i) => {       
+            row.forEach((e,j) => {
+                this.preview.field[i][j] = fieldCharacter;
+            });    
+        });
+    }
+
     playGame() {
+
+        this.resetPreview();
+        
+        console.log(this.preview.field);
+
+        return;
 
         console.log('Time to find your hat!');
         console.log(`To begin please enter a direction (type 'W' for up, 'A' for left, 'S' for down or 'D' for right)\n`); 
