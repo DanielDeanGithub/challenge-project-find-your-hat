@@ -25,12 +25,16 @@ class Field {
 
 class Game {
     constructor(field) {
-        this.map = field;
-        this._preview = field;
+        this._map = field.field;
+        this._preview = new Field(field.field);
         this._gameRun = false;
         this._player = [0,0];
     }
     
+    get map() {
+        return this._map;
+    }
+
     get gameRun() {
         return this._gameRun;
     }
@@ -56,26 +60,26 @@ class Game {
     }
 
     resetPreview() {
-        return this.preview.field.forEach((row, i) => {       
+        console.log(this.map);
+        this.preview.field.forEach((row, i) => {       
             row.forEach((e,j) => {
                 this.preview.field[i][j] = fieldCharacter;
             });    
         });
+
+        console.log(this.map);
+        return;
     }
 
     playGame() {
-
         this.resetPreview();
-        
-        console.log(this.preview.field);
-
-        return;
-
         console.log('Time to find your hat!');
         console.log(`To begin please enter a direction (type 'W' for up, 'A' for left, 'S' for down or 'D' for right)\n`); 
 
         const mapArr = this.map.field;
 
+        //console.log(this.map);
+        //console.log(this.preview);
         //console.log(this.gameRun);
         this.gameRun = true;
         //console.log(this.gameRun);
@@ -95,7 +99,6 @@ class Game {
             //console.log(userInput);
 
             let x = this.player[0];
-
             let y = this.player[1];
 
             //console.log(`x: ${x} - y: ${y}`);
@@ -138,6 +141,12 @@ class Game {
 
                 console.log('The search continues...')
                 this.player = [x,y];
+                
+                this.preview.field[y][x] = this.map.field[y][x];
+                console.log(this.map.field[y][x]);
+               
+                this.map.print();
+                this.preview.print();
                 //console.log(this.player);
 
             } else {
