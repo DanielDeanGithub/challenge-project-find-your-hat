@@ -25,8 +25,8 @@ class Field {
 
 class Game {
     constructor(field) {
-        this._map = field.field;
-        this._preview = new Field(field.field);
+        this._map = field;
+        this._preview = new Field(JSON.parse(JSON.stringify(field.field)));
         this._gameRun = false;
         this._player = [0,0];
     }
@@ -60,15 +60,11 @@ class Game {
     }
 
     resetPreview() {
-        console.log(this.map);
-        this.preview.field.forEach((row, i) => {       
+        return this.preview.field.forEach((row, i) => {       
             row.forEach((e,j) => {
                 this.preview.field[i][j] = fieldCharacter;
             });    
         });
-
-        console.log(this.map);
-        return;
     }
 
     playGame() {
@@ -128,7 +124,6 @@ class Game {
             // error checking to make sure movement is within bounds
             if (y > 0 && y < mapArr.length || x > 0 && x < mapArr[y].length) {
                 //console.log(this.player);
-
                 if (mapArr[y][x] === hole) {
                     console.log('You fell down a hole. Game over =[');
                     return this.gameRun = false;
@@ -143,9 +138,9 @@ class Game {
                 this.player = [x,y];
                 
                 this.preview.field[y][x] = this.map.field[y][x];
-                console.log(this.map.field[y][x]);
+                //console.log(this.map.field[y][x]);
                
-                this.map.print();
+                //this.map.print();
                 this.preview.print();
                 //console.log(this.player);
 
