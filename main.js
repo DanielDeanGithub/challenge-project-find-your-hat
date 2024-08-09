@@ -62,7 +62,9 @@ class Game {
     resetPreview() {
         return this.preview.field.forEach((row, i) => {       
             row.forEach((e,j) => {
-                this.preview.field[i][j] = fieldCharacter;
+                if (e != pathCharacter) {
+                    this.preview.field[i][j] = fieldCharacter;
+                }
             });    
         });
     }
@@ -123,6 +125,7 @@ class Game {
 
             // error checking to make sure movement is within bounds
             if (y > 0 && y < mapArr.length || x > 0 && x < mapArr[y].length) {
+
                 //console.log(this.player);
                 if (mapArr[y][x] === hole) {
                     console.log('You fell down a hole. Game over =[');
@@ -137,7 +140,7 @@ class Game {
                 console.log('The search continues...')
                 this.player = [x,y];
                 
-                this.preview.field[y][x] = this.map.field[y][x];
+                
                 //console.log(this.map.field[y][x]);
                
                 //this.map.print();
