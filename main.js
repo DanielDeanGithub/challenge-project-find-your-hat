@@ -87,6 +87,10 @@ class Game {
 
             // error checking to make sure movement is within bounds
             if (y > 0 && y < mapArr.length || x > 0 && x < mapArr[y].length) {
+                this.player = [x,y];
+                this.preview.field[y][x] = pathCharacter;
+                this.preview.print();
+
                 if (mapArr[y][x] === hole) {
                     console.log('You fell down a hole. Game over =[');
                     return this.gameRun = false;
@@ -96,12 +100,8 @@ class Game {
                     console.log('You found your hat, Congratulations!!!');
                     return this.gameRun = false;
                 }
-
-                console.log('The search continues...')
-                this.player = [x,y];
-                this.preview.field[y][x] = pathCharacter;
-                this.preview.print();
-
+                
+                console.log('The search continues...');
             } else {
                 console.log('Ouch! You just walked into a walk.');
             }          
