@@ -68,7 +68,7 @@ class Game {
 
             let x = this.player[0];
             let y = this.player[1];
-            
+
             switch (userInput) {
                 case 'W':
                     y--;   
@@ -86,22 +86,22 @@ class Game {
                     break;
             }
 
+            const endGame = (message) => {
+                previewArr[y][x] = mapArr[y][x];
+                this.preview.print();
+                console.log(message);
+                this.gameRun = false;
+            };
+
             // error checking to make sure movement is within bounds
             if (y > 0 && y < mapArr.length || x > 0 && x < mapArr[y].length) {
                 this.player = [x,y];
-                previewArr[y][x] = pathCharacter;
-                this.preview.print();
+                previewArr[y][x] = pathCharacter;                
 
-                if (mapArr[y][x] === hole) {
-                    console.log('You fell down a hole. Game over =[');
-                    return this.gameRun = false;
-                }
+                if (mapArr[y][x] === hole) return endGame('You fell down a hole. Game over =[');
+                if (mapArr[y][x] === hat) return endGame('You found your hat, Congratulations!!!');
                 
-                if (mapArr[y][x] === hat) {
-                    console.log('You found your hat, Congratulations!!!');
-                    return this.gameRun = false;
-                }
-
+                this.preview.print();
                 console.log('The search continues...');
             } else {
                 console.log('Ouch! You just walked into a walk.');
