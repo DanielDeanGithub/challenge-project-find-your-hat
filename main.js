@@ -41,12 +41,10 @@ class Game {
 
     resetPreview() {
         return this.preview.field.forEach((row, i) => {       
-            row.forEach((e,j) => {
-                if (e != pathCharacter) {
-                    this.preview.field[i][j] = fieldCharacter;
-                }
+            row.forEach((e,j) => {                    
+                e === pathCharacter ? this._player = [0,0] : this.preview.field[i][j] = fieldCharacter;
             });    
-        });
+        }); 
     }
 
     playGame() {
@@ -98,8 +96,8 @@ class Game {
                 this.player = [x,y];
                 previewArr[y][x] = pathCharacter;                
 
-                if (mapArr[y][x] === hole) return endGame('You fell down a hole. Game over =[');
-                if (mapArr[y][x] === hat) return endGame('You found your hat, Congratulations!!!');
+                if (mapArr[y][x] === hole) endGame('You fell down a hole. Game over =[');
+                if (mapArr[y][x] === hat) endGame('You found your hat, Congratulations!!!');
                 
                 this.preview.print();
                 console.log('The search continues...');
