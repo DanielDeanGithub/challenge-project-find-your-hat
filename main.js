@@ -118,6 +118,10 @@ class Game {
             console.log(`Error. Please enter a valid answer ('Y' or 'N')`);
             replayGame = prompt(`Would you like to play again? (Enter 'Y' to play again or 'N' to exit)`).toUpperCase();
         }
+        if (replayGame === 'Y') {
+            this._preview = new Field(JSON.parse(JSON.stringify(mapArr)));
+            return this.playGame();
+        }
     }
 };
 
