@@ -96,9 +96,15 @@ class Game {
                 this.player = [x,y];
                 previewArr[y][x] = pathCharacter;                
 
-                if (mapArr[y][x] === hole) endGame('You fell down a hole. Game over =[');
-                if (mapArr[y][x] === hat) endGame('You found your hat, Congratulations!!!');
-                
+                if (mapArr[y][x] === hole) {
+                    endGame('You fell down a hole. Game over =[');
+                    break;
+                }
+                if (mapArr[y][x] === hat) {
+                    endGame('You found your hat, Congratulations!!!');
+                    break;
+                }
+
                 this.preview.print();
                 console.log('The search continues...');
             } else {
