@@ -113,6 +113,11 @@ class Game {
         }
 
         let replayGame = prompt(`Would you like to play again? (Enter 'Y' to play again or 'N' to exit)`).toUpperCase();
+
+        while (replayGame !== 'Y' && replayGame !== 'N') {
+            console.log(`Error. Please enter a valid answer ('Y' or 'N')`);
+            replayGame = prompt(`Would you like to play again? (Enter 'Y' to play again or 'N' to exit)`).toUpperCase();
+        }
     }
 };
 
