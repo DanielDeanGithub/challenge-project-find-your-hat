@@ -111,6 +111,8 @@ class Game {
                 console.log('Ouch! You just walked into a walk.');
             }          
         }
+
+        let replayGame = prompt(`Would you like to play again? (Enter 'Y' to play again or 'N' to exit)`).toUpperCase();
     }
 };
 
