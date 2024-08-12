@@ -21,12 +21,10 @@ class Field {
         this.field.forEach(row => console.log(row.join('')));
     }
 
-    static generateField(x, y, percent) {
-
+    static generateField(x = 3, y = 3, percent = 10) {
+        return console.log(`x: ${x} y: ${y} percent: ${percent}`);
     }
 };
-
-
 class Game {
     constructor(field) {
         this._map = field;
@@ -136,4 +134,9 @@ const myField = new Field([
 ]);
 
 const hatGame = new Game(myField);
-hatGame.playGame();
+//hatGame.playGame();
+
+console.log(myField.field);
+Field.generateField();
+Field.generateField(5,5,20);
+
