@@ -20,6 +20,10 @@ class Field {
     print() {
         this.field.forEach(row => console.log(row.join('')));
     }
+
+    static generateField(x, y, percent) {
+
+    }
 };
 
 
