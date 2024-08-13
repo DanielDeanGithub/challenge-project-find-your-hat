@@ -31,8 +31,16 @@ class Field {
             newField.push(temp);
             temp = [];
         }
-        
-        console.log(newField);
+
+        const generateCoordinates = (x, y) => {
+            let a = Math.floor(Math.random() * x);
+            let b = Math.floor(Math.random() * y);
+
+            return [a,b];
+        }
+
+        console.log(generateCoordinates(x,y));
+
         return newField;
     }
 };
