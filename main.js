@@ -33,13 +33,21 @@ class Field {
         }
 
         const generateCoordinates = (x, y) => {
-            let a = Math.floor(Math.random() * x);
-            let b = Math.floor(Math.random() * y);
+            let randX = Math.floor(Math.random() * x);
+            let randY = Math.floor(Math.random() * y);
 
-            return [a,b];
+            while(newField[b][a] != fieldCharacter) {
+                randX = Math.floor(Math.random() * x);
+                randY = Math.floor(Math.random() * y);
+            }
+
+            return [randX,randY];
         }
 
-        console.log(generateCoordinates(x,y));
+        const hatLocation = generateCoordinates(x,y);
+        newField[hatLocation[1]][hatLocation[0]] = hat;
+
+        console.log(newField);
 
         return newField;
     }
