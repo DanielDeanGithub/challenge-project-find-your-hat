@@ -22,6 +22,9 @@ class Field {
     }
 
     static generateField(x = 3, y = 3, percent = 10) {
+        const newField = [];
+
+
         return console.log(`x: ${x} y: ${y} percent: ${percent}`);
     }
 };
