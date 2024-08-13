@@ -23,14 +23,17 @@ class Field {
 
     static generateField(x = 3, y = 3, percent = 10) {
         const newField = [];
-
+        let temp = [];
         for (let i = 0; i < y; i++) {
             for (let j = 0; j < x; j++ ) {
-
+                temp.push(fieldCharacter);
             }
+            newField.push(temp);
+            temp = [];
         }
-
-        return console.log(`x: ${x} y: ${y} percent: ${percent}`);
+        
+        console.log(newField);
+        return newField;
     }
 };
 class Game {
@@ -144,7 +147,7 @@ const myField = new Field([
 const hatGame = new Game(myField);
 //hatGame.playGame();
 
-console.log(myField.field);
+//console.log(myField.field);
 Field.generateField();
-Field.generateField(5,5,20);
+Field.generateField(3,5,20);
 
