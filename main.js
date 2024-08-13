@@ -36,7 +36,7 @@ class Field {
             let randX = Math.floor(Math.random() * x);
             let randY = Math.floor(Math.random() * y);
 
-            while(newField[b][a] != fieldCharacter) {
+            while(newField[randY][randX] != fieldCharacter) {
                 randX = Math.floor(Math.random() * x);
                 randY = Math.floor(Math.random() * y);
             }
@@ -46,6 +46,9 @@ class Field {
 
         const hatLocation = generateCoordinates(x,y);
         newField[hatLocation[1]][hatLocation[0]] = hat;
+
+        const startLocation = generateCoordinates(x,y);
+        newField[startLocation[1]][startLocation[0]] = pathCharacter;
 
         console.log(newField);
 
