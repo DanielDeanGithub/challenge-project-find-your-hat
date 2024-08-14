@@ -50,6 +50,8 @@ class Field {
         const startLocation = generateCoordinates(x,y);
         newField[startLocation[1]][startLocation[0]] = pathCharacter;
 
+        const holeTotal = Math.round(((x * y)) * (percent / 100));
+
         console.log(newField);
 
         return newField;
