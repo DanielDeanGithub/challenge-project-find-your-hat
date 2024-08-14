@@ -52,6 +52,13 @@ class Field {
 
         const holeTotal = Math.round(((x * y)) * (percent / 100));
 
+        console.log(holeTotal);
+
+        for (let i = 0; i < holeTotal; i++) {
+            let holeLocation = generateCoordinates(x,y);
+            newField[holeLocation[1]][holeLocation[0]] = hole;
+        }
+
         console.log(newField);
 
         return newField;
@@ -170,5 +177,5 @@ const hatGame = new Game(myField);
 
 //console.log(myField.field);
 Field.generateField();
-Field.generateField(3,5,20);
+Field.generateField(3,5,50);
 
