@@ -52,14 +52,10 @@ class Field {
 
         const holeTotal = Math.round(((x * y)) * (percent / 100));
 
-        console.log(holeTotal);
-
         for (let i = 0; i < holeTotal; i++) {
             let holeLocation = generateCoordinates(x,y);
             newField[holeLocation[1]][holeLocation[0]] = hole;
         }
-
-        console.log(newField);
 
         return newField;
     }
@@ -166,16 +162,12 @@ class Game {
     }
 };
 
-const myField = new Field([
-    ['*', '░', 'O'],
-    ['░', 'O', '░'],
-    ['░', '^', '░'],
-]);
+// const myField = new Field([
+//     ['*', '░', 'O'],
+//     ['░', 'O', '░'],
+//     ['░', '^', '░'],
+// ]);
 
+const myField = new Field(Field.generateField(3,5,25));
 const hatGame = new Game(myField);
-//hatGame.playGame();
-
-//console.log(myField.field);
-Field.generateField();
-Field.generateField(3,5,50);
-
+hatGame.playGame();
