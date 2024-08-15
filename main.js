@@ -79,7 +79,7 @@ class Game {
     resetPreview() {
         return this.preview.field.forEach((row, i) => {       
             row.forEach((e,j) => {                    
-                e === pathCharacter ? this._player = [0,0] : this.preview.field[i][j] = fieldCharacter;
+                e === pathCharacter ? this._player = [j,i] : this.preview.field[i][j] = fieldCharacter;
             });    
         }); 
     }
@@ -88,6 +88,7 @@ class Game {
         this.resetPreview();
         console.log(`Time to find your hat!\nTo begin please enter a direction (type 'W' for up, 'A' for left, 'S' for down or 'D' for right)`); 
 
+        this.map.print();
         this.preview.print();
         const mapArr = this.map.field;
         const previewArr = this.preview.field;
