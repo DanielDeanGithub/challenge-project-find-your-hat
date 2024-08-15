@@ -88,7 +88,7 @@ class Game {
         this.resetPreview();
         console.log(`Time to find your hat!\nTo begin please enter a direction (type 'W' for up, 'A' for left, 'S' for down or 'D' for right)`); 
 
-        this.map.print();
+        // this.map.print();
         this.preview.print();
         const mapArr = this.map.field;
         const previewArr = this.preview.field;
@@ -130,7 +130,7 @@ class Game {
             };
 
             // error checking to make sure movement is within bounds
-            if (y > 0 && y < mapArr.length || x > 0 && x < mapArr[y].length) {
+            if (y >= 0 && y < mapArr.length && x >= 0 && x < mapArr[y].length) {
                 this.player = [x,y];
                 previewArr[y][x] = pathCharacter;                
 
