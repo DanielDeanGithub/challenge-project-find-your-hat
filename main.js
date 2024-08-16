@@ -97,8 +97,14 @@ class Game {
         while(this.gameRun) {
             let userInput = prompt('Please enter a direction to explore:').toUpperCase();
             
-            while (userInput !== 'W' && userInput !== 'A' && userInput !== 'S' && userInput !== 'D') {
+            while (userInput !== 'W' && userInput !== 'A' && userInput !== 'S' && userInput !== 'D' && userInput !== '?') {
                 console.log(`Error. Please enter a valid direction ('W','A','S', or 'D')`);
+                userInput = prompt('Please enter a direction to explore:').toUpperCase();
+            }
+
+            if (userInput === '?') {
+                console.log(`Cheater!!!`);
+                this.map.print();
                 userInput = prompt('Please enter a direction to explore:').toUpperCase();
             }
 
@@ -169,6 +175,6 @@ class Game {
 //     ['░', '^', '░'],
 // ]);
 
-const myField = new Field(Field.generateField(3,5,25));
+const myField = new Field(Field.generateField(4,4,25));
 const hatGame = new Game(myField);
 hatGame.playGame();
