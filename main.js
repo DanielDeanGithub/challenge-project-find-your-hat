@@ -169,12 +169,51 @@ class Game {
     }
 };
 
-// const myField = new Field([
-//     ['*', '░', 'O'],
-//     ['░', 'O', '░'],
-//     ['░', '^', '░'],
-// ]);
+const myField = new Field([
+    ['*', '░', 'O'],
+    ['░', 'O', '░'],
+    ['░', '^', '░'],
+]);
 
-const myField = new Field(Field.generateField(4,4,25));
+//const myField = new Field(Field.generateField(4,4,25));
+
+
+const isFieldValid = ({field}) => {
+    const start = [];
+    const end = [];
+    const visted = [];
+    const correctPath = [];
+
+    for (let i = 0; i < field.length; i++)
+    {
+        for (let j = 0; j < field[i].length; j++)
+        {
+            if (field[i][j] === pathCharacter) {
+                start.push(i,j);
+            } 
+            if (field[i][j] === hat) {
+                end.push(i,j);
+            }
+        }
+    }
+
+    if (!start.length > 0 && !end.length > 0) {
+        return false;
+    }
+
+
+
+
+    return true;
+}
+
+
+
+isFieldValid(myField);
+
+
+
+
+
 const hatGame = new Game(myField);
-hatGame.playGame();
+// hatGame.playGame();
