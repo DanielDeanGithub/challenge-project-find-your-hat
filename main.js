@@ -186,8 +186,13 @@ const isFieldValid = ({field}) => {
 
     for (let i = 0; i < field.length; i++)
     {
+        visted.push([]);
+        correctPath.push([]);
+
         for (let j = 0; j < field[i].length; j++)
         {
+            visted[i].push(false);
+            correctPath[i].push(false);
             if (field[i][j] === pathCharacter) {
                 start.push(i,j);
             } 
@@ -201,8 +206,8 @@ const isFieldValid = ({field}) => {
         return false;
     }
 
-
-
+    console.log(visted);
+    console.log(correctPath);
 
     return true;
 }
