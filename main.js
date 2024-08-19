@@ -169,11 +169,26 @@ class Game {
     }
 };
 
+// const myField = new Field([
+//     ['*', '░', 'O'],
+//     ['░', 'O', '░'],
+//     ['░', '^', '░'],
+// ]);
+
+// const myField = new Field([
+//     ['*', '░', 'O', '░', 'O'],
+//     ['░', 'O', '░', '░', 'O'],
+//     ['░', 'O', '^', '░', 'O'],
+//     ['░', '░', '░', '░', 'O'],
+// ]);
+
 const myField = new Field([
-    ['*', '░', 'O'],
-    ['░', 'O', '░'],
-    ['░', '^', '░'],
+    ['*', 'O', 'O', '░', 'O'],
+    ['░', '░', '░', '░', 'O'],
+    ['░', 'O', '^', '░', 'O'],
+    ['░', 'O', '░', '░', 'O'],
 ]);
+
 
 //const myField = new Field(Field.generateField(4,4,25));
 
@@ -206,31 +221,16 @@ const isFieldValid = ({field}) => {
         return false;
     }
 
-    console.log(`start: ${start}`);
-    console.log(`end: ${end}`);
-
     const checkPath = (x,y) =>  {
-        console.log(y,x);
-        console.log(y != 0)
-        console.log(y != field.length - 1)
-
-        if (y === end[0] && x === end[1]) return true;
+        if (y === end[0] && x === end[1]) {
+            correctPath[y][x] = true;
+            return true;
+        } 
         if (visted [y][x]) return false;
-
+        if (field [y][x] === hole) return false;
         visted[y][x] = true;
+        
 
-        if (y != 0) {
-            if (checkPath(x, y - 1)) {
-                correctPath[y][x] = true;
-                return true;
-            }
-        }
-        if (y != field.length - 1) {
-            if (checkPath(x, y + 1)) {
-                correctPath[y][x] = true;
-                return true;
-            }
-        }
         if (x != 0) {
             if (checkPath(x - 1, y)) {
                 correctPath[y][x] = true;
@@ -243,19 +243,29 @@ const isFieldValid = ({field}) => {
                 return true;
             }
         }
+        if (y != 0) {
+            if (checkPath(x, y - 1)) {
+                correctPath[y][x] = true;
+                return true;
+            }
+        }
+        if (y != field.length - 1) {
+            if (checkPath(x, y + 1)) {
+                correctPath[y][x] = true;
+                return true;
+            }
+        }
         return false;
     }
     
-    checkPath(start[0],start[1]);
-
-    
-    console.log(visted);
-    console.log(correctPath);
+    return (checkPath(start[0],start[1]));
 }
 
 
 
-isFieldValid(myField);
+const test = isFieldValid(myField);
+
+console.log(test);
 
 
 
