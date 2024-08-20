@@ -59,6 +59,74 @@ class Field {
 
         return newField;
     }
+
+    static isFieldValid = ({field}) => {
+        const start = [];
+        const end = [];
+        const visted = [];
+        const correctPath = [];
+    
+        for (let i = 0; i < field.length; i++)
+        {
+            visted.push([]);
+            correctPath.push([]);
+    
+            for (let j = 0; j < field[i].length; j++)
+            {
+                visted[i].push(false);
+                correctPath[i].push(false);
+                if (field[i][j] === pathCharacter) {
+                    start.push(i,j);
+                } 
+                if (field[i][j] === hat) {
+                    end.push(i,j);
+                }
+            }
+        }
+    
+        if (!start.length > 0 && !end.length > 0) {
+            return false;
+        }
+    
+        const checkPath = (x,y) =>  {
+            if (y === end[0] && x === end[1]) {
+                correctPath[y][x] = true;
+                return true;
+            } 
+            if (visted [y][x]) return false;
+            if (field [y][x] === hole) return false;
+            visted[y][x] = true;
+            
+    
+            if (x != 0) {
+                if (checkPath(x - 1, y)) {
+                    correctPath[y][x] = true;
+                    return true;
+                }
+            }
+            if (x != field[y].length - 1) {
+                if (checkPath(x + 1, y)) {
+                    correctPath[y][x] = true;
+                    return true;
+                }
+            }
+            if (y != 0) {
+                if (checkPath(x, y - 1)) {
+                    correctPath[y][x] = true;
+                    return true;
+                }
+            }
+            if (y != field.length - 1) {
+                if (checkPath(x, y + 1)) {
+                    correctPath[y][x] = true;
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        return (checkPath(start[0],start[1]));
+    }
 };
 class Game {
     constructor(field) {
@@ -191,79 +259,7 @@ const myField = new Field([
 
 
 //const myField = new Field(Field.generateField(4,4,25));
-
-
-const isFieldValid = ({field}) => {
-    const start = [];
-    const end = [];
-    const visted = [];
-    const correctPath = [];
-
-    for (let i = 0; i < field.length; i++)
-    {
-        visted.push([]);
-        correctPath.push([]);
-
-        for (let j = 0; j < field[i].length; j++)
-        {
-            visted[i].push(false);
-            correctPath[i].push(false);
-            if (field[i][j] === pathCharacter) {
-                start.push(i,j);
-            } 
-            if (field[i][j] === hat) {
-                end.push(i,j);
-            }
-        }
-    }
-
-    if (!start.length > 0 && !end.length > 0) {
-        return false;
-    }
-
-    const checkPath = (x,y) =>  {
-        if (y === end[0] && x === end[1]) {
-            correctPath[y][x] = true;
-            return true;
-        } 
-        if (visted [y][x]) return false;
-        if (field [y][x] === hole) return false;
-        visted[y][x] = true;
-        
-
-        if (x != 0) {
-            if (checkPath(x - 1, y)) {
-                correctPath[y][x] = true;
-                return true;
-            }
-        }
-        if (x != field[y].length - 1) {
-            if (checkPath(x + 1, y)) {
-                correctPath[y][x] = true;
-                return true;
-            }
-        }
-        if (y != 0) {
-            if (checkPath(x, y - 1)) {
-                correctPath[y][x] = true;
-                return true;
-            }
-        }
-        if (y != field.length - 1) {
-            if (checkPath(x, y + 1)) {
-                correctPath[y][x] = true;
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    return (checkPath(start[0],start[1]));
-}
-
-
-
-const test = isFieldValid(myField);
+const test = Field.isFieldValid(myField);
 
 console.log(test);
 
