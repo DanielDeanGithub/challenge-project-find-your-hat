@@ -23,44 +23,52 @@ class Field {
 
     static generateField(x = 3, y = 3, percent = 10) {
         const newField = [];
-        let temp = [];
-        for (let i = 0; i < y; i++) {
-            for (let j = 0; j < x; j++ ) {
-                temp.push(fieldCharacter);
-            }
-            newField.push(temp);
-            temp = [];
-        }
 
-        const generateCoordinates = (x, y) => {
-            let randX = Math.floor(Math.random() * x);
-            let randY = Math.floor(Math.random() * y);
-
-            while(newField[randY][randX] != fieldCharacter) {
-                randX = Math.floor(Math.random() * x);
-                randY = Math.floor(Math.random() * y);
+        const createField = () => {    
+            let temp = [];
+            for (let i = 0; i < y; i++) {
+                for (let j = 0; j < x; j++ ) {
+                    temp.push(fieldCharacter);
+                }
+                newField.push(temp);
+                temp = [];
             }
 
-            return [randX,randY];
+            const generateCoordinates = (x, y) => {
+                let randX = Math.floor(Math.random() * x);
+                let randY = Math.floor(Math.random() * y);
+
+                while(newField[randY][randX] != fieldCharacter) {
+                    randX = Math.floor(Math.random() * x);
+                    randY = Math.floor(Math.random() * y);
+                }
+
+                return [randX,randY];
+            }
+
+            const hatLocation = generateCoordinates(x,y);
+            newField[hatLocation[1]][hatLocation[0]] = hat;
+
+            const startLocation = generateCoordinates(x,y);
+            newField[startLocation[1]][startLocation[0]] = pathCharacter;
+
+            const holeTotal = Math.round(((x * y)) * (percent / 100));
+
+            for (let i = 0; i < holeTotal; i++) {
+                let holeLocation = generateCoordinates(x,y);
+                newField[holeLocation[1]][holeLocation[0]] = hole;
+            }
         }
-
-        const hatLocation = generateCoordinates(x,y);
-        newField[hatLocation[1]][hatLocation[0]] = hat;
-
-        const startLocation = generateCoordinates(x,y);
-        newField[startLocation[1]][startLocation[0]] = pathCharacter;
-
-        const holeTotal = Math.round(((x * y)) * (percent / 100));
-
-        for (let i = 0; i < holeTotal; i++) {
-            let holeLocation = generateCoordinates(x,y);
-            newField[holeLocation[1]][holeLocation[0]] = hole;
+        
+        while (!this.isFieldValid(newField)) {
+            console.log(`retry`)
+            createField();
         }
 
         return newField;
     }
 
-    static isFieldValid = ({field}) => {
+    static isFieldValid = (field) => {
         const start = [];
         const end = [];
         const visted = [];
@@ -250,22 +258,20 @@ class Game {
 //     ['░', '░', '░', '░', 'O'],
 // ]);
 
-const myField = new Field([
-    ['*', 'O', 'O', '░', 'O'],
-    ['░', '░', '░', '░', 'O'],
-    ['░', 'O', '^', '░', 'O'],
-    ['░', 'O', '░', '░', 'O'],
-]);
+// const myField = new Field([
+//     ['*', 'O', 'O', '░', 'O'],
+//     ['░', '░', '░', '░', 'O'],
+//     ['░', 'O', '^', '░', 'O'],
+//     ['░', 'O', '░', '░', 'O'],
+// ]);
 
 
-//const myField = new Field(Field.generateField(4,4,25));
-const test = Field.isFieldValid(myField);
+const myField = new Field(Field.generateField(4,4,25));
+console.log(myField);
+
+const test = Field.isFieldValid(myField.field);
 
 console.log(test);
 
-
-
-
-
 const hatGame = new Game(myField);
-// hatGame.playGame();
+hatGame.playGame();
