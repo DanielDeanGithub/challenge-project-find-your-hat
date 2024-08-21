@@ -24,6 +24,11 @@ class Field {
     static generateField(x = 3, y = 3, percent = 10) {
         const newField = [];
 
+        if(percent > 75) {
+            console.log(`Difficulty cap reached.`)
+            percent = 75;          
+        }
+
         const createField = () => {    
             let temp = [];
             for (let i = 0; i < y; i++) {
@@ -41,6 +46,8 @@ class Field {
                 while(newField[randY][randX] != fieldCharacter) {
                     randX = Math.floor(Math.random() * x);
                     randY = Math.floor(Math.random() * y);
+
+                    console.log('generating new coordinates...');
                 }
 
                 return [randX,randY];
@@ -52,14 +59,17 @@ class Field {
             const startLocation = generateCoordinates(x,y);
             newField[startLocation[1]][startLocation[0]] = pathCharacter;
 
-            const holeTotal = Math.round(((x * y)) * (percent / 100));
+            const holeTotal = Math.floor(((x * y) - 2) * (percent / 100));
+
+            console.log(holeTotal);
+            //console.log(holeTotal-2);
 
             for (let i = 0; i < holeTotal; i++) {
                 let holeLocation = generateCoordinates(x,y);
                 newField[holeLocation[1]][holeLocation[0]] = hole;
             }
         }
-        
+
         while (!this.isFieldValid(newField)) {
             console.log(`retry`)
             createField();
@@ -266,12 +276,12 @@ class Game {
 // ]);
 
 
-const myField = new Field(Field.generateField(4,4,25));
+const myField = new Field(Field.generateField(4,4,100));
 console.log(myField);
 
-const test = Field.isFieldValid(myField.field);
+//const test = Field.isFieldValid(myField.field);
 
-console.log(test);
+//console.log(test);
 
 const hatGame = new Game(myField);
 hatGame.playGame();
