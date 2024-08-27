@@ -22,18 +22,22 @@ class Field {
     }
 
     static generateField(x = 3, y = 3, percent = 10) {
-        const newField = [];
+        let newField = [];
 
         if(percent > 75) {
             console.log(`Difficulty cap reached.`)
             percent = 75;          
         }
 
-        const createField = () => {    
+        const createField = () => {  
+            console.log(`creating new field`);  
+            
+
             let temp = [];
             for (let i = 0; i < y; i++) {
                 for (let j = 0; j < x; j++ ) {
-                    temp.push(fieldCharacter);
+                    const rng = Math.floor(Math.random() * 100);
+                    rng < percent ? temp.push(hole) : temp.push(fieldCharacter);
                 }
                 newField.push(temp);
                 temp = [];
@@ -42,36 +46,26 @@ class Field {
             const generateCoordinates = (x, y) => {
                 let randX = Math.floor(Math.random() * x);
                 let randY = Math.floor(Math.random() * y);
-
-                while(newField[randY][randX] != fieldCharacter) {
-                    randX = Math.floor(Math.random() * x);
-                    randY = Math.floor(Math.random() * y);
-
-                    console.log('generating new coordinates...');
-                }
-
                 return [randX,randY];
             }
 
             const hatLocation = generateCoordinates(x,y);
             newField[hatLocation[1]][hatLocation[0]] = hat;
 
-            const startLocation = generateCoordinates(x,y);
+            let startLocation = generateCoordinates(x,y);
+            while(startLocation === hatLocation) {
+                startLocation = generateCoordinates(x,y);
+            }
+            
             newField[startLocation[1]][startLocation[0]] = pathCharacter;
 
-            const holeTotal = Math.floor(((x * y) - 2) * (percent / 100));
-
-            console.log(holeTotal);
-            //console.log(holeTotal-2);
-
-            for (let i = 0; i < holeTotal; i++) {
-                let holeLocation = generateCoordinates(x,y);
-                newField[holeLocation[1]][holeLocation[0]] = hole;
-            }
+            console.log(newField);
         }
 
+        
+
         while (!this.isFieldValid(newField)) {
-            console.log(`retry`)
+            newField = [];
             createField();
         }
 
@@ -82,21 +76,18 @@ class Field {
         const start = [];
         const end = [];
         const visted = [];
-        const correctPath = [];
     
         for (let i = 0; i < field.length; i++)
         {
             visted.push([]);
-            correctPath.push([]);
     
             for (let j = 0; j < field[i].length; j++)
             {
                 visted[i].push(false);
-                correctPath[i].push(false);
-                if (field[i][j] === pathCharacter) {
+                if (field[j][i] === pathCharacter) {
                     start.push(i,j);
                 } 
-                if (field[i][j] === hat) {
+                if (field[j][i] === hat) {
                     end.push(i,j);
                 }
             }
@@ -106,44 +97,40 @@ class Field {
             return false;
         }
     
-        const checkPath = (x,y) =>  {
-            if (y === end[0] && x === end[1]) {
-                correctPath[y][x] = true;
-                return true;
-            } 
-            if (visted [y][x]) return false;
-            if (field [y][x] === hole) return false;
-            visted[y][x] = true;
+        const checkPath = (x,y) =>  {  
+            // console.log(`x: ${x} - y: ${y}`);
+            // console.log(field[y][x]);
+            // console.log(start);
+            // console.log(end);
             
-    
+            if (visted[y][x]) return false;
+            visted[y][x] = true;
+            //console.log(visted);
+            
+            if (field[y][x] === hole) return false;
+            if (x === end[0] && y === end[1]) return true;         
+                
             if (x != 0) {
-                if (checkPath(x - 1, y)) {
-                    correctPath[y][x] = true;
-                    return true;
-                }
+                //console.log(`left`);      
+                if (checkPath(x - 1, y)) return true;
             }
             if (x != field[y].length - 1) {
-                if (checkPath(x + 1, y)) {
-                    correctPath[y][x] = true;
-                    return true;
-                }
+                //console.log(`right`);
+                if (checkPath(x + 1, y)) return true;
             }
             if (y != 0) {
-                if (checkPath(x, y - 1)) {
-                    correctPath[y][x] = true;
-                    return true;
-                }
+                //console.log(`up`);
+                if (checkPath(x, y - 1)) return true;
             }
             if (y != field.length - 1) {
-                if (checkPath(x, y + 1)) {
-                    correctPath[y][x] = true;
-                    return true;
-                }
+                //console.log(`down`);
+                if (checkPath(x, y + 1)) return true;
             }
+
             return false;
         }
-        
-        return (checkPath(start[0],start[1]));
+
+        return checkPath(start[0],start[1]);
     }
 };
 class Game {
@@ -276,12 +263,19 @@ class Game {
 // ]);
 
 
-const myField = new Field(Field.generateField(4,4,100));
-console.log(myField);
+// const myField = new Field([
+//     [ 'O', 'O', 'O', '░' ],
+//     [ '░', '░', 'O', '*' ],
+//     [ 'O', 'O', '░', '░' ],
+//     [ '^', '░', 'O', '░' ]
+//   ]);
 
-//const test = Field.isFieldValid(myField.field);
+const myField = new Field(Field.generateField(4,4,20));
+console.log(myField.field);
 
-//console.log(test);
+const test = Field.isFieldValid(myField.field);
+
+console.log(test);
 
 const hatGame = new Game(myField);
-hatGame.playGame();
+// hatGame.playGame();
